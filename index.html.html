@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Counting down to Alin's Special Day 🎂</title>
+<style>
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #fdecec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #333;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 30px 24px;
+    max-width: 420px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  h1 {
+    font-size: 26px;
+    margin-bottom: 10px;
+  }
+  h1 span {
+    color: #e63946;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 25px;
+  }
+  .timer {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+  }
+  .time-box {
+    background: #fde2e4;
+    border-radius: 14px;
+    padding: 14px 10px;
+    width: 22%;
+  }
+  .time-box .num {
+    font-size: 28px;
+    font-weight: 700;
+    color: #e63946;
+  }
+  .time-box .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #555;
+    margin-top: 4px;
+  }
+  .note {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .heart {
+    color: #e63946;
+  }
+  .music-note {
+    font-size: 12px;
+    margin-top: 14px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+
+<!-- Background Music -->
+<audio autoplay loop>
+  <!-- IMPORTANT:
+       Replace 'ek_din_aap_yu_humko_mil_jaayenge.mp3'
+       with the actual MP3 file name you upload -->
+  <source src="ek_din_aap_yu_humko_mil_jaayenge.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card">
+  <h1>Counting down to <span>Alin's</span><br/>special day 🎂</h1>
+  <div class="subtitle">You mean more to me than words can ever explain 💕</div>
+
+  <div class="timer">
+    <div class="time-box">
+      <div class="num" id="days">00</div>
+      <div class="label">Days</div>
+    </div>
+    <div class="time-box">
+      <div class="num" id="hours">00</div>
+      <div class="label">Hours</div>
+    </div>
+    <div class="time-box">
+      <div class="num" id="minutes">00</div>
+      <div class="label">Minutes</div>
+    </div>
+    <div class="time-box">
+      <div class="num" id="seconds">00</div>
+      <div class="label">Seconds</div>
+    </div>
+  </div>
+
+  <div class="note">
+    A special celebration awaits you on <b>18th January</b> ✨<br/>
+    Something magical is about to unfold <span class="heart">♥</span>
+  </div>
+
+  <div class="music-note">
+    🎶 Playing: <i>Ek Din Aap Yun Humko Mil Jaayenge</i>
+  </div>
+</div>
+
+<script>
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const year = new Date().getFullYear();
+    let target = new Date(`January 18, ${year} 00:00:00`).getTime();
+
+    if (now > target) {
+      target = new Date(`January 18, ${year + 1} 00:00:00`).getTime();
+    }
+
+    const diff = target - now;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("days").innerText = String(days).padStart(2, '0');
+    document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+    document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+    document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>
+
+</body>
+</html>
